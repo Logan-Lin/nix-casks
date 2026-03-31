@@ -1,0 +1,6 @@
+musicbrainz-picard
+inkscape
+ovito
+slidepilot
+clash-verge-rev
+linearmouse

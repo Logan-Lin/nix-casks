@@ -8,19 +8,19 @@
 stdenv.mkDerivation rec {
   inherit (cask) pname version;
   nativeBuildInputs = with pkgs; [
-    magika
     unzip
-    jq
     bzip2
   ];
   phases = [ "unpackPhase" "installPhase" ];
   unpackPhase = builtins.readFile ./unpack.sh;
   installPhase = builtins.concatStringsSep "\n" cask.installPhase;
-  src = fetchurl {
+  src = let
+    ext = lib.last (lib.splitString "." (baseNameOf cask.src.url));
+  in fetchurl {
     inherit (cask.src) url sha256;
-    name = cask.pname;
+    name = "${cask.pname}.${ext}";
   };
-  meta = with stdenv.lib; {
+  meta = {
     description = cask.meta.description or null;
     homepage = cask.meta.homepage or null;
     platforms = lib.platforms.darwin;

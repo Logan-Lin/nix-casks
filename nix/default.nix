@@ -1,8 +1,2 @@
-{
-  imports = [
-    ./casks
-    ./ci.nix
-    ./treefmt.nix
-    ./shell.nix
-  ];
-}
+{ pkgs, lib, ... }:
+import ./casks { inherit pkgs lib; }

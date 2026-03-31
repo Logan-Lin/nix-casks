@@ -1,0 +1,92 @@
+[
+  {
+    "pname": "musicbrainz-picard",
+    "version": "2.13.3",
+    "src": {
+      "url": "https://data.musicbrainz.org/pub/musicbrainz/picard/MusicBrainz-Picard-2.13.3-macOS-10.14.dmg",
+      "sha256": "ed854df1dc7ad29a092e582ad7211359d0ee7b55f8df20e906d431fb92e92124"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/MusicBrainz Picard.app\" && cp -r \"MusicBrainz Picard.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Music tagger",
+      "homepage": "https://picard.musicbrainz.org/"
+    }
+  },
+  {
+    "pname": "inkscape",
+    "version": "1.4.3",
+    "src": {
+      "url": "https://media.inkscape.org/dl/resources/file/Inkscape-1.4.3_arm64.dmg",
+      "sha256": "f4aa9c9b2e06db432c6f81a494ad9aa59b87cb7d9539cd7e6f6000002cb9edff"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/Inkscape.app\" && cp -r \"Inkscape.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Vector graphics editor",
+      "homepage": "https://inkscape.org/"
+    }
+  },
+  {
+    "pname": "ovito",
+    "version": "3.15.2",
+    "src": {
+      "url": "https://www.ovito.org/download/master/ovito-basic-3.15.2-macos-arm64.dmg",
+      "sha256": "31e757530cf9f0a287657b19d5e8c76fcb03b6076e8aa1333f00a8602e3f8317"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/Ovito.app\" && cp -r \"Ovito.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Scientific data visualization and analysis software",
+      "homepage": "https://www.ovito.org/"
+    }
+  },
+  {
+    "pname": "slidepilot",
+    "version": "1.8.0",
+    "src": {
+      "url": "https://slidepilotapp.com/updates/SlidePilot-1.8.0.zip",
+      "sha256": "bc8bf077a504cdb2d09d7adee313e408d40063e66e2c0d8722c6678e4ee5cc20"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/SlidePilot.app\" && cp -r \"SlidePilot.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "PDF presentation tool",
+      "homepage": "https://slidepilotapp.com/en"
+    }
+  },
+  {
+    "pname": "clash-verge-rev",
+    "version": "2.4.7",
+    "src": {
+      "url": "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.4.7/Clash.Verge_2.4.7_aarch64.dmg",
+      "sha256": "b4967eeefccc9688c100810fdfefa99147030c23949d1f278d5a5536aa86abf3"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/Clash Verge.app\" && cp -r \"Clash Verge.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Continuation of Clash Verge - A Clash Meta GUI based on Tauri",
+      "homepage": "https://clash-verge-rev.github.io/"
+    }
+  },
+  {
+    "pname": "linearmouse",
+    "version": "0.10.4",
+    "src": {
+      "url": "https://dl.linearmouse.org/v0.10.4/LinearMouse.dmg",
+      "sha256": "da95342199693aff98dac56a9f0de795497b3b18105f8dabe28c4f6e5380c0ef"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/LinearMouse.app\" && cp -r \"LinearMouse.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Customise mouse behavior",
+      "homepage": "https://linearmouse.org/"
+    }
+  }
+]

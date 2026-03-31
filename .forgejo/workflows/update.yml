@@ -1,0 +1,57 @@
+name: Update casks
+on:
+  push:
+    paths:
+      - 'casks.txt'
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: nix
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update packages.json
+        run: |
+          json_array="[]"
+          while IFS= read -r token || [ -n "$token" ]; do
+            token=$(echo "$token" | sed 's/#.*//' | xargs)
+            [ -z "$token" ] && continue
+            echo "Fetching $token..."
+            cask_json=$(curl -sfL "https://formulae.brew.sh/api/cask/$token.json")
+            json_array=$(echo "$json_array" | jq --argjson new "$cask_json" '. += [$new]')
+          done < casks.txt
+
+          echo "$json_array" | jq '[.[] | {
+            pname: .token,
+            version: .version,
+            src: { url: .url, sha256: .sha256 },
+            installPhase: [
+              .artifacts[] | to_entries[] |
+              select(.key == "app") |
+              .value[] |
+              "mkdir -p \"$out/Applications/\(.)\" && cp -r \"\(.)\" \"$out/Applications\""
+            ],
+            meta: {
+              description: .desc,
+              homepage: .homepage
+            }
+          }]' > packages.json
+
+      - name: Commit and push if changed
+        run: |
+          git diff --quiet packages.json && exit 0
+          git config user.name "Forgejo Actions"
+          git config user.email "git-actions@yanlincs.com"
+          git add packages.json
+          git commit -m "update packages.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
+
+      - name: Send notification
+        if: always()
+        run: curl -s -d "Cask update ${{ job.status }}" https://ntfy.sh/yanlincs-homelab
