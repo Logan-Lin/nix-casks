@@ -44,14 +44,27 @@ jobs:
           }]' > packages.json
 
       - name: Commit and push if changed
+        id: commit
         run: |
-          git diff --quiet packages.json && exit 0
-          git config user.name "Forgejo Actions"
-          git config user.email "git-actions@yanlincs.com"
-          git add packages.json
-          git commit -m "update packages.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git push
+          if git diff --quiet packages.json; then
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name "Forgejo Actions"
+            git config user.email "git-actions@yanlincs.com"
+            git add packages.json
+            git commit -m "update packages.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Send notification
         if: always()
-        run: curl -s -d "Cask update ${{ job.status }}" https://ntfy.sh/yanlincs-homelab
+        run: |
+          if [ "${{ job.status }}" != "success" ]; then
+            msg="Cask update failed"
+          elif [ "${{ steps.commit.outputs.updated }}" = "true" ]; then
+            msg="Cask update: packages updated"
+          else
+            msg="Cask update: no changes"
+          fi
+          curl -s -d "$msg" https://ntfy.sh/yanlincs-homelab
