@@ -31,10 +31,10 @@
   },
   {
     "pname": "ovito",
-    "version": "3.15.2",
+    "version": "3.15.3",
     "src": {
-      "url": "https://www.ovito.org/download/master/ovito-basic-3.15.2-macos-arm64.dmg",
-      "sha256": "31e757530cf9f0a287657b19d5e8c76fcb03b6076e8aa1333f00a8602e3f8317"
+      "url": "https://www.ovito.org/download/master/ovito-basic-3.15.3-macos-arm64.dmg",
+      "sha256": "b6fe0ca23bd3d2ecbc49ff94cb91902b2a99b8f62a58708dfce2bc306ce9e0ab"
     },
     "installPhase": [
       "mkdir -p \"$out/Applications/Ovito.app\" && cp -r \"Ovito.app\" \"$out/Applications\""
