@@ -6,7 +6,7 @@ Fetches Homebrew cask metadata directly from the [Homebrew API](https://formulae
 
 ```nix
 # flake.nix
-inputs.nix-casks.url = "git+https://git.yanlincs.com/yanlin/nix-casks.git";
+inputs.nix-casks.url = "github:Logan-Lin/nix-casks";
 ```
 
 Add or remove casks by editing `casks.txt`.

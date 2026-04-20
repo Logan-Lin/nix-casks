@@ -12,9 +12,9 @@ permissions:
 
 jobs:
   update:
-    runs-on: nix
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Update packages.json
         run: |
@@ -49,8 +49,8 @@ jobs:
           if git diff --quiet packages.json; then
             echo "updated=false" >> "$GITHUB_OUTPUT"
           else
-            git config user.name "Forgejo Actions"
-            git config user.email "git-actions@yanlincs.com"
+            git config user.name "github-actions[bot]"
+            git config user.email "git.bot@yanlincs.com"
             git add packages.json
             git commit -m "update packages.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
