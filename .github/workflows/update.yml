@@ -43,6 +43,67 @@ jobs:
             }
           }]' > packages.json
 
+      - name: Validate updated packages
+        id: validate
+        run: |
+          old_json=$(git show HEAD:packages.json)
+          new_json=$(cat packages.json)
+          skipped=""
+          validated="$new_json"
+
+          for pname in $(echo "$new_json" | jq -r '.[].pname'); do
+            old_entry=$(echo "$old_json" | jq --arg p "$pname" '.[] | select(.pname == $p)')
+            new_entry=$(echo "$new_json" | jq --arg p "$pname" '.[] | select(.pname == $p)')
+
+            if [ "$(echo "$old_entry" | jq '{url: .src.url, sha256: .src.sha256}')" = \
+                 "$(echo "$new_entry" | jq '{url: .src.url, sha256: .src.sha256}')" ]; then
+              continue
+            fi
+
+            url=$(echo "$new_entry" | jq -r '.src.url')
+            expected_hash=$(echo "$new_entry" | jq -r '.src.sha256')
+            echo "Validating $pname ($url)..."
+
+            if ! curl -sfL --head --retry 2 "$url" > /dev/null 2>&1; then
+              echo "FAIL: $pname URL not reachable"
+              skipped="$skipped $pname(url)"
+              if [ -n "$old_entry" ]; then
+                validated=$(echo "$validated" | jq --arg p "$pname" --argjson old "$old_entry" \
+                  '[.[] | if .pname == $p then $old else . end]')
+              fi
+              continue
+            fi
+
+            tmpfile=$(mktemp)
+            if ! curl -sfL --retry 2 -o "$tmpfile" "$url"; then
+              echo "FAIL: $pname download failed"
+              skipped="$skipped $pname(download)"
+              rm -f "$tmpfile"
+              if [ -n "$old_entry" ]; then
+                validated=$(echo "$validated" | jq --arg p "$pname" --argjson old "$old_entry" \
+                  '[.[] | if .pname == $p then $old else . end]')
+              fi
+              continue
+            fi
+
+            actual_hash=$(sha256sum "$tmpfile" | cut -d' ' -f1)
+            rm -f "$tmpfile"
+            if [ "$actual_hash" != "$expected_hash" ]; then
+              echo "FAIL: $pname hash mismatch (expected $expected_hash, got $actual_hash)"
+              skipped="$skipped $pname(hash)"
+              if [ -n "$old_entry" ]; then
+                validated=$(echo "$validated" | jq --arg p "$pname" --argjson old "$old_entry" \
+                  '[.[] | if .pname == $p then $old else . end]')
+              fi
+              continue
+            fi
+
+            echo "OK: $pname"
+          done
+
+          echo "$validated" | jq '.' > packages.json
+          echo "skipped=${skipped:- none}" >> "$GITHUB_OUTPUT"
+
       - name: Commit and push if changed
         id: commit
         run: |
@@ -63,7 +124,7 @@ jobs:
           if [ "${{ job.status }}" != "success" ]; then
             msg="Cask update failed"
           elif [ "${{ steps.commit.outputs.updated }}" = "true" ]; then
-            msg="Cask update: packages updated"
+            msg="Cask update: packages updated (skipped:${{ steps.validate.outputs.skipped }})"
           else
             msg="Cask update: no changes"
           fi
