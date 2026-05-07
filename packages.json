@@ -16,10 +16,10 @@
   },
   {
     "pname": "inkscape",
-    "version": "1.4.3",
+    "version": "1.4.4",
     "src": {
-      "url": "https://media.inkscape.org/dl/resources/file/Inkscape-1.4.3_arm64.dmg",
-      "sha256": "f4aa9c9b2e06db432c6f81a494ad9aa59b87cb7d9539cd7e6f6000002cb9edff"
+      "url": "https://media.inkscape.org/dl/resources/file/Inkscape-1.4.4_arm64.dmg",
+      "sha256": "eacca94ab01e59467cdd5452a2867c3734450f9a4cfb3346956cc9b07f34f3f1"
     },
     "installPhase": [
       "mkdir -p \"$out/Applications/Inkscape.app\" && cp -r \"Inkscape.app\" \"$out/Applications\""
