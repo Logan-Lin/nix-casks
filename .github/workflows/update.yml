@@ -56,15 +56,3 @@ jobs:
             git push
             echo "updated=true" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Send notification
-        if: always()
-        run: |
-          if [ "${{ job.status }}" != "success" ]; then
-            msg="Cask update failed"
-          elif [ "${{ steps.commit.outputs.updated }}" = "true" ]; then
-            msg="Cask update: packages updated"
-          else
-            msg="Cask update: no changes"
-          fi
-          curl -s -d "$msg" https://ntfy.sh/yanlincs-homelab
