@@ -61,10 +61,10 @@
   },
   {
     "pname": "clash-verge-rev",
-    "version": "2.4.7",
+    "version": "2.5.0",
     "src": {
-      "url": "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.4.7/Clash.Verge_2.4.7_aarch64.dmg",
-      "sha256": "b4967eeefccc9688c100810fdfefa99147030c23949d1f278d5a5536aa86abf3"
+      "url": "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.0/Clash.Verge_2.5.0_aarch64.dmg",
+      "sha256": "0aac81924dd94130234e21318323a431635bec98c226811741878775e861909b"
     },
     "installPhase": [
       "mkdir -p \"$out/Applications/Clash Verge.app\" && cp -r \"Clash Verge.app\" \"$out/Applications\""
