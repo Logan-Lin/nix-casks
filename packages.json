@@ -88,5 +88,35 @@
       "description": "Customise mouse behavior",
       "homepage": "https://linearmouse.org/"
     }
+  },
+  {
+    "pname": "tencent-meeting",
+    "version": "3.43.20.415,3dce49aaa130713fe887bfad22d21569",
+    "src": {
+      "url": "https://updatecdn.meeting.qq.com/cos/3dce49aaa130713fe887bfad22d21569/TencentMeeting_0300000000_3.43.20.415.publish.arm64.officialwebsite.dmg",
+      "sha256": "26e52df915ccccaef2b8abd8cc693ceddb4e1c23a135095717b726a55508fa81"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/TencentMeeting.app\" && cp -r \"TencentMeeting.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Cloud video conferencing",
+      "homepage": "https://meeting.tencent.com/"
+    }
+  },
+  {
+    "pname": "wechat",
+    "version": "4.1.10.31,39618",
+    "src": {
+      "url": "https://dldir1.qq.com/weixin/Universal/Mac/xWeChatMac_universal_4.1.10.31_39618.dmg",
+      "sha256": "229ef91360297c5588380a31af5d72ae3e2a5efb39ea366c866afb59c5b05923"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/WeChat.app\" && cp -r \"WeChat.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Free messaging and calling application",
+      "homepage": "https://mac.weixin.qq.com/"
+    }
   }
 ]
