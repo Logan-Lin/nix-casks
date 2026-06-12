@@ -106,10 +106,10 @@
   },
   {
     "pname": "wechat",
-    "version": "4.1.10.31,39618",
+    "version": "4.1.10.53,39917",
     "src": {
-      "url": "https://dldir1.qq.com/weixin/Universal/Mac/xWeChatMac_universal_4.1.10.31_39618.dmg",
-      "sha256": "229ef91360297c5588380a31af5d72ae3e2a5efb39ea366c866afb59c5b05923"
+      "url": "https://dldir1.qq.com/weixin/Universal/Mac/xWeChatMac_universal_4.1.10.53_39917.dmg",
+      "sha256": "e7676bf88fc9d9249b3144f0cdd5f36ff08782c4e9c39dd9136967ed67b36430"
     },
     "installPhase": [
       "mkdir -p \"$out/Applications/WeChat.app\" && cp -r \"WeChat.app\" \"$out/Applications\""
