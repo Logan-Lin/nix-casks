@@ -1,0 +1,137 @@
+[
+  {
+    "pname": "musicbrainz-picard",
+    "version": "2.13.3",
+    "src": {
+      "url": "https://data.musicbrainz.org/pub/musicbrainz/picard/MusicBrainz-Picard-2.13.3-macOS-10.14.dmg",
+      "sha256": "ed854df1dc7ad29a092e582ad7211359d0ee7b55f8df20e906d431fb92e92124"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/MusicBrainz Picard.app\" && cp -r \"MusicBrainz Picard.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Music tagger",
+      "homepage": "https://picard.musicbrainz.org/"
+    }
+  },
+  {
+    "pname": "inkscape",
+    "version": "1.4.4",
+    "src": {
+      "url": "https://media.inkscape.org/dl/resources/file/Inkscape-1.4.4_arm64.dmg",
+      "sha256": "eacca94ab01e59467cdd5452a2867c3734450f9a4cfb3346956cc9b07f34f3f1"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/Inkscape.app\" && cp -r \"Inkscape.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Vector graphics editor",
+      "homepage": "https://inkscape.org/"
+    }
+  },
+  {
+    "pname": "ovito",
+    "version": "3.15.4",
+    "src": {
+      "url": "https://www.ovito.org/download/master/ovito-basic-3.15.4-macos-arm64.dmg",
+      "sha256": "22e975b91689b5e29f9a511b6c2d6db6a351f08a1f998b0c5729381402186c52"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/Ovito.app\" && cp -r \"Ovito.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Scientific data visualization and analysis software",
+      "homepage": "https://www.ovito.org/"
+    }
+  },
+  {
+    "pname": "slidepilot",
+    "version": "1.8.0",
+    "src": {
+      "url": "https://slidepilotapp.com/updates/SlidePilot-1.8.0.zip",
+      "sha256": "bc8bf077a504cdb2d09d7adee313e408d40063e66e2c0d8722c6678e4ee5cc20"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/SlidePilot.app\" && cp -r \"SlidePilot.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "PDF presentation tool",
+      "homepage": "https://slidepilotapp.com/en"
+    }
+  },
+  {
+    "pname": "clash-verge-rev",
+    "version": "2.5.1",
+    "src": {
+      "url": "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.1/Clash.Verge_2.5.1_aarch64.dmg",
+      "sha256": "a2016a77922b67ac058b6c247aad7809893b429f238ee7aeee1fee6e3bf70e2b"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/Clash Verge.app\" && cp -r \"Clash Verge.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Continuation of Clash Verge - A Clash Meta GUI based on Tauri",
+      "homepage": "https://clash-verge-rev.github.io/"
+    }
+  },
+  {
+    "pname": "linearmouse",
+    "version": "0.11.2",
+    "src": {
+      "url": "https://dl.linearmouse.org/v0.11.2/LinearMouse.dmg",
+      "sha256": "f7fa320b8f74e3cd293e29ae469e6899419d1edb9e7e40141fbdc7e3ecfa44a7"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/LinearMouse.app\" && cp -r \"LinearMouse.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Customise mouse behavior",
+      "homepage": "https://linearmouse.org/"
+    }
+  },
+  {
+    "pname": "tencent-meeting",
+    "version": "3.43.20.415,3dce49aaa130713fe887bfad22d21569",
+    "src": {
+      "url": "https://updatecdn.meeting.qq.com/cos/3dce49aaa130713fe887bfad22d21569/TencentMeeting_0300000000_3.43.20.415.publish.arm64.officialwebsite.dmg",
+      "sha256": "26e52df915ccccaef2b8abd8cc693ceddb4e1c23a135095717b726a55508fa81"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/TencentMeeting.app\" && cp -r \"TencentMeeting.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Cloud video conferencing",
+      "homepage": "https://meeting.tencent.com/"
+    }
+  },
+  {
+    "pname": "wechat",
+    "version": "4.1.10.53,39917",
+    "src": {
+      "url": "https://dldir1.qq.com/weixin/Universal/Mac/xWeChatMac_universal_4.1.10.53_39917.dmg",
+      "sha256": "e7676bf88fc9d9249b3144f0cdd5f36ff08782c4e9c39dd9136967ed67b36430"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/WeChat.app\" && cp -r \"WeChat.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Free messaging and calling application",
+      "homepage": "https://mac.weixin.qq.com/"
+    }
+  },
+  {
+    "pname": "ungoogled-chromium",
+    "version": "149.0.7827.102-1.1",
+    "src": {
+      "url": "https://github.com/ungoogled-software/ungoogled-chromium-macos/releases/download/149.0.7827.102-1.1/ungoogled-chromium_149.0.7827.102-1.1_arm64-macos.dmg",
+      "sha256": "c5fad9889c71197ab057fd16c4f115f29ec77624c006262180b240b75d35d926"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/Chromium.app\" && cp -r \"Chromium.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Google Chromium, sans integration with Google",
+      "homepage": "https://ungoogled-software.github.io/"
+    }
+  }
+]
