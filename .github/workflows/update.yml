@@ -1,8 +1,8 @@
 name: Update casks
 on:
   push:
-    paths:
-      - 'casks.txt'
+    branches:
+      - master
   schedule:
     - cron: '0 22 * * *'
   workflow_dispatch:
@@ -10,13 +10,19 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-casks
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
-      - name: Update packages.json
+      - name: Generate packages.json
         run: |
           json_array="[]"
           while IFS= read -r token || [ -n "$token" ]; do
@@ -43,16 +49,28 @@ jobs:
             }
           }]' > packages.json
 
-      - name: Commit and push if changed
-        id: commit
+      - name: Publish to archive branch
         run: |
-          if git diff --quiet packages.json; then
-            echo "updated=false" >> "$GITHUB_OUTPUT"
+          git config user.name "github-actions[bot]"
+          git config user.email "git.bot@yanlincs.com"
+
+          master_sha="$(git rev-parse HEAD)"
+          mv packages.json "$RUNNER_TEMP/packages.json"
+
+          if git ls-remote --exit-code --heads origin archive >/dev/null 2>&1; then
+            git fetch origin archive:refs/remotes/origin/archive
+            git checkout -B archive origin/archive
+            git read-tree -u --reset "$master_sha"
           else
-            git config user.name "github-actions[bot]"
-            git config user.email "git.bot@yanlincs.com"
-            git add packages.json
+            git checkout -B archive "$master_sha"
+          fi
+
+          cp "$RUNNER_TEMP/packages.json" packages.json
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "packages.json unchanged; nothing to publish."
+          else
             git commit -m "update packages.json $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            git push
-            echo "updated=true" >> "$GITHUB_OUTPUT"
+            git push origin archive
           fi
