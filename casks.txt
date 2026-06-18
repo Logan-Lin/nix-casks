@@ -6,3 +6,4 @@ clash-verge-rev
 linearmouse
 tencent-meeting
 wechat
+ungoogled-chromium
