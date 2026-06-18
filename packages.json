@@ -118,5 +118,20 @@
       "description": "Free messaging and calling application",
       "homepage": "https://mac.weixin.qq.com/"
     }
+  },
+  {
+    "pname": "ungoogled-chromium",
+    "version": "149.0.7827.102-1.1",
+    "src": {
+      "url": "https://github.com/ungoogled-software/ungoogled-chromium-macos/releases/download/149.0.7827.102-1.1/ungoogled-chromium_149.0.7827.102-1.1_arm64-macos.dmg",
+      "sha256": "c5fad9889c71197ab057fd16c4f115f29ec77624c006262180b240b75d35d926"
+    },
+    "installPhase": [
+      "mkdir -p \"$out/Applications/Chromium.app\" && cp -r \"Chromium.app\" \"$out/Applications\""
+    ],
+    "meta": {
+      "description": "Google Chromium, sans integration with Google",
+      "homepage": "https://ungoogled-software.github.io/"
+    }
   }
 ]
